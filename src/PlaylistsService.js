@@ -7,9 +7,8 @@ module.exports = class extends PGService {
 
     async getPlaylistById(id) {
         const result = await this._query({
-            text: `SELECT playlists.id, playlists.name, users.username 
+            text: `SELECT playlists.id, playlists.name 
             FROM playlists 
-            LEFT JOIN users ON users.id = playlists.owner 
             WHERE playlists.id = $1`,
             values: [id],
         });

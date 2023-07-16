@@ -12,12 +12,12 @@ module.exports = class {
                 message.content.toString(),
             );
 
-            const pl = await this._playlistsService.getPlaylistById(id);
-            pl.songs = await this._playlistsService.getSongsPlaylistById(id);
+            const playlist = await this._playlistsService.getPlaylistById(id);
+            playlist.songs = await this._playlistsService.getSongsPlaylistById(id);
 
             await this._mailSender.sendEmail(
                 targetEmail,
-                JSON.stringify(pl),
+                JSON.stringify({playlist}),
             );
 
         } catch (error) {
